@@ -17,25 +17,6 @@ const Cart: React.FC = () => {
     const cart = JSON.parse(localStorage.getItem("f_cart") || "[]");
     setItems(cart);
 
-    // OneSignal Abandoned Cart Tagging
-    try {
-       const OneSignal = (window as any).OneSignal;
-       if (OneSignal && OneSignal.User) {
-           if (cart.length > 0) {
-               const cartCount = cart.reduce((acc: number, item: any) => acc + item.quantity, 0);
-               OneSignal.User.addTags({
-                   cart_items_count: cartCount,
-                   abandoned_cart: "true",
-                   last_cart_update: Date.now()
-               });
-           } else {
-               OneSignal.User.addTags({
-                   cart_items_count: 0,
-                   abandoned_cart: "false"
-               });
-           }
-       }
-    } catch(e) { console.error("OneSignal tag error", e); }
   }, []);
 
   const total = items.reduce(

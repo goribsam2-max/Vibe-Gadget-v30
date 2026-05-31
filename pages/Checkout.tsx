@@ -456,18 +456,6 @@ export default function CheckoutPage() {
 
       // Email removed per user request
 
-      // Clear Abandoned Cart tag
-      try {
-         const OneSignal = (window as any).OneSignal;
-         if (OneSignal && OneSignal.User) {
-             OneSignal.User.addTags({
-                cart_items_count: 0,
-                abandoned_cart: "false",
-                last_purchase_date: Date.now()
-             });
-         }
-      } catch(e) {}
-
       localStorage.removeItem("f_cart");
       localStorage.setItem("vibe_last_order", Date.now().toString());
       navigate(`/success?orderId=${docRef.id}`);

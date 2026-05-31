@@ -29,37 +29,6 @@ const AdminNotifications: React.FC = () => {
         createdAt: Date.now(),
       });
 
-      // 2. Send via OneSignal using API
-      // Note: This requires the correct App ID and REST API KEY from OneSignal dashboard.
-      // Make sure the OneSignal REST API key is stored securely if actually integrating tightly.
-      // Usually done server-side, but shown here as requested. Let's use the provided app id.
-      const appId = "29c39d8a-7be8-404a-8a33-5616086735fa";
-
-      try {
-        await fetch("https://onesignal.com/api/v1/notifications", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json; charset=utf-8",
-            // 'Authorization': `Basic YOUR_REST_API_KEY_HERE`
-            // A REST API key is strictly required to successfully authorize push notifications
-            // If the key is not present, it will fail silently here but save to DB perfectly
-          },
-          body: JSON.stringify({
-            app_id: appId,
-            included_segments: ["Subscribed Users"],
-            headings: { en: title },
-            contents: { en: message },
-            big_picture: imageUrl || undefined,
-            url: window.location.origin,
-          }),
-        });
-      } catch (err) {
-        console.warn(
-          "OneSignal push failed to send (Likely missing REST API Key auth)",
-          err,
-        );
-      }
-
       notify("Notification broadcasted successfully!", "success");
       setTitle("");
       setMessage("");
