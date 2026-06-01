@@ -233,46 +233,22 @@ export function Header() {
     };
   }, [open]);
 
-  let headerBgClass = "bg-zinc-50 dark:bg-zinc-800 border-transparent";
-  let isDarkHeaderBg = false;
+  let headerBgClass = "bg-transparent border-transparent";
+  let isDarkHeaderBg = true;
 
-  if (scrolled) {
-    headerBgClass = "bg-white dark:bg-zinc-900 shadow-md border-b border-zinc-200 dark:border-zinc-800";
-  } else {
-    if (location.pathname === "/") {
-      headerBgClass = "bg-white dark:bg-[#121212] border-transparent";
-    } else if (location.pathname.startsWith("/profile")) {
-      headerBgClass = "bg-[#0a2e15] dark:bg-[#071f0f] border-transparent";
-      isDarkHeaderBg = true;
-    } else if (location.pathname.startsWith("/affiliate")) {
-      headerBgClass = "bg-gradient-to-r from-[#1cdb5e] to-[#0ba340] border-transparent";
-      isDarkHeaderBg = true;
-    }
-  }
-
-  const wordmarkColor = isDarkHeaderBg ? "text-white" : "text-zinc-900 dark:text-white";
-
-  const buttonClass = cn(
-    "transition-all duration-300 rounded-full flex items-center justify-center hover:scale-105 active:scale-95",
-    !scrolled
-      ? "bg-white dark:bg-zinc-800 text-zinc-900 dark:text-zinc-100 shadow-[0_4px_10px_rgba(0,0,0,0.06)] border border-black/5 dark:border-white/5 hover:bg-zinc-50 dark:hover:bg-zinc-700"
-      : "bg-transparent text-zinc-700 dark:text-zinc-300 hover:bg-zinc-100 dark:hover:bg-zinc-800 border-transparent",
-  );
+  const buttonClass = "transition-all duration-300 flex items-center justify-center hover:scale-105 active:scale-95 bg-zinc-900 border-none text-white hover:bg-zinc-800 shadow-sm backdrop-blur-md rounded-full w-10 h-10";
 
   return (
     <header
-      className={cn(
-        "sticky top-0 z-50 w-full transition-all duration-300 ease-in-out",
-        headerBgClass
-      )}
+      className="sticky top-0 z-50 w-full transition-all duration-300 ease-in-out bg-transparent border-transparent pointer-events-none"
     >
       <nav
         className={cn(
-          "mx-auto flex w-full max-w-[1920px] items-center justify-between px-4 lg:px-8 transition-all duration-300",
-          scrolled ? "h-14 md:h-16" : "h-16 md:h-20",
+          "mx-auto flex w-full max-w-[1920px] items-center justify-between px-4 lg:px-6 transition-all duration-300 pointer-events-auto",
+          scrolled ? "h-14 md:h-16 bg-white/90 dark:bg-zinc-900/90 backdrop-blur-lg shadow-sm border-b md:border-b-0 md:rounded-b-2xl border-zinc-200 dark:border-zinc-800" : "h-16 md:h-20",
         )}
       >
-        <div className="flex items-center gap-2 md:gap-5">
+        <div className="flex items-center gap-1 md:gap-3 pointer-events-auto">
           <Button
             size="icon"
             variant="ghost"
@@ -288,30 +264,26 @@ export function Header() {
                 );
               }
             }}
-            className={cn("mr-1", buttonClass)}
+            className="flex items-center justify-center transition-all w-10 h-10 border-transparent shadow-none rounded-full shrink-0"
             aria-expanded={open}
             aria-controls="mobile-menu"
             aria-label="Toggle menu"
           >
             {isInnerPage ? (
-              <ChevronLeft className="size-6" />
+              <ChevronLeft className="size-6 text-zinc-900 dark:text-white" />
             ) : (
-              <MenuToggleIcon open={open} className="size-5" duration={300} />
+              <MenuToggleIcon open={open} className="size-5 text-zinc-900 dark:text-white" duration={300} />
             )}
           </Button>
           <NavLink
             to={isAdmin ? "/admin" : "/"}
-            className={cn(
-              "p-2 flex items-center pr-2 shrink-0",
-              buttonClass,
-              "rounded-3xl border-none ring-0 shadow-none hover:shadow-none bg-transparent",
-            )}
+            className="p-1 flex items-center shrink-0 rounded-3xl border-none ring-0 shadow-none hover:shadow-none bg-transparent"
           >
-            <WordmarkIcon className={wordmarkColor} />
+            <WordmarkIcon className="h-5 sm:h-6 w-auto" />
           </NavLink>
         </div>
 
-        <div className="hidden items-center gap-2 md:flex">
+        <div className="hidden items-center gap-2 md:flex pointer-events-auto">
           <Button
             variant="ghost"
             size="icon"
@@ -337,31 +309,31 @@ export function Header() {
             <ShoppingCart className="w-5 h-5" />
           </Button>
 
-          <div className="flex items-center gap-1 bg-zinc-100/80 dark:bg-zinc-800/80 border border-zinc-200/50 dark:border-zinc-700/50 rounded-full p-1 shadow-sm backdrop-blur-sm">
-            <AnimatedThemeToggler className="rounded-full shadow-none border-none bg-transparent hover:bg-zinc-200/50 dark:hover:bg-zinc-700/50 w-9 h-9" />
+          <div className={cn("flex items-center gap-1 rounded-full p-1.5 transition-all", scrolled ? "bg-transparent shadow-none" : "bg-white/80 dark:bg-zinc-900/80 shadow-[0_2px_10px_rgba(0,0,0,0.06)] dark:shadow-sm border border-zinc-200/50 dark:border-zinc-800/50 backdrop-blur-md")}>
+            <AnimatedThemeToggler className="rounded-full shadow-none border-none bg-transparent hover:bg-zinc-100 dark:hover:bg-zinc-800 w-9 h-9 text-zinc-600 hover:text-zinc-900 dark:text-zinc-300 dark:hover:text-white" />
             <Button
               variant="ghost"
               size="icon"
               onClick={() => navigate("/notifications")}
-              className="rounded-full shadow-none border-none bg-transparent hover:bg-zinc-200/50 dark:hover:bg-zinc-700/50 w-9 h-9"
+              className="rounded-full shadow-none border-none bg-transparent hover:bg-zinc-100 dark:hover:bg-zinc-800 w-9 h-9 text-zinc-600 hover:text-zinc-900 dark:text-zinc-300 dark:hover:text-white"
             >
-              <Bell className="w-4 h-4 text-zinc-700 dark:text-zinc-200" />
+              <Bell className="w-4 h-4" />
             </Button>
             {location.pathname !== "/profile" && (
               <AccountMenu scrolled={scrolled} isPill />
             )}
           </div>
         </div>
-        <div className="flex items-center gap-2 md:hidden">
-          <div className="flex items-center gap-1 bg-zinc-100/80 dark:bg-zinc-800/80 border border-zinc-200/50 dark:border-zinc-700/50 rounded-full p-1 shadow-sm backdrop-blur-sm">
-            <AnimatedThemeToggler className="rounded-full shadow-none border-none bg-transparent hover:bg-zinc-200/50 dark:hover:bg-zinc-700/50 w-9 h-9" />
+        <div className="flex items-center gap-2 md:hidden pointer-events-auto">
+          <div className={cn("flex items-center gap-1 rounded-full p-1.5 transition-all", scrolled ? "bg-transparent shadow-none" : "bg-white/80 dark:bg-zinc-900/80 shadow-[0_2px_10px_rgba(0,0,0,0.06)] dark:shadow-sm border border-zinc-200/50 dark:border-zinc-800/50 backdrop-blur-md")}>
+            <AnimatedThemeToggler className="rounded-full shadow-none border-none bg-transparent hover:bg-zinc-100 dark:hover:bg-zinc-800 w-9 h-9 flex text-zinc-600 hover:text-zinc-900 dark:text-zinc-300 dark:hover:text-white" />
             <Button
               variant="ghost"
               size="icon"
               onClick={() => navigate("/notifications")}
-              className="hidden sm:flex rounded-full shadow-none border-none bg-transparent hover:bg-zinc-200/50 dark:hover:bg-zinc-700/50 w-9 h-9"
+              className="hidden sm:flex rounded-full shadow-none border-none bg-transparent hover:bg-zinc-100 dark:hover:bg-zinc-800 w-9 h-9 text-zinc-600 hover:text-zinc-900 dark:text-zinc-300 dark:hover:text-white"
             >
-              <Bell className="w-4 h-4 text-zinc-700 dark:text-zinc-200" />
+              <Bell className="w-4 h-4" />
             </Button>
             {location.pathname !== "/profile" && (
               <AccountMenu scrolled={scrolled} isPill />

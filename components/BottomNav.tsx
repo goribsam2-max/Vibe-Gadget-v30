@@ -18,7 +18,7 @@ const BottomNav: React.FC = () => {
   }
 
   return (
-    <div className="fixed bottom-0 left-0 right-0 w-full bg-slate-50 dark:bg-[#121212] z-[100] md:hidden pb-safe border-t border-zinc-200 dark:border-zinc-800">
+    <div className="fixed bottom-0 left-0 right-0 w-full bg-white/10 dark:bg-black/10 backdrop-blur-md backdrop-saturate-150 z-[100] md:hidden pb-safe border-t border-white/30 dark:border-white/10 shadow-[0_-8px_32px_rgba(0,0,0,0.05),inset_0_1px_1px_rgba(255,255,255,0.4)]">
       <div className="flex w-full justify-between items-center px-4 h-[60px]">
           {links.map((link) => {
             const isActive = location.pathname === link.to || (link.to !== '/' && location.pathname.startsWith(link.to));

@@ -83,7 +83,7 @@ function OfferProductCard({ product }: { product: Product }) {
       className="pl-4 sm:pl-6 max-w-full flex-[0_0_220px] sm:flex-[0_0_250px] md:flex-[0_0_280px] cursor-pointer"
       onClick={() => navigate(`/product/${productSlug}/${product.id}`)}
     >
-      <div className="relative h-[290px] sm:h-[320px] md:h-[350px] w-full overflow-hidden rounded-[20px] md:rounded-[24px] bg-zinc-100 dark:bg-zinc-800 shadow-lg border border-zinc-200/50 dark:border-zinc-800/50 group hover:-translate-y-1 transition-transform duration-300">
+      <div className="relative h-[290px] sm:h-[320px] md:h-[350px] w-full overflow-hidden rounded-[15px] md:rounded-[15px] bg-zinc-100 dark:bg-zinc-800 shadow-lg border border-zinc-200/50 dark:border-zinc-800/50 group hover:-translate-y-1 transition-transform duration-300">
         <img
           src={imageUrl}
           alt={product.name}
@@ -99,41 +99,41 @@ function OfferProductCard({ product }: { product: Product }) {
         </div>
 
         {/* Bottom Pill Card */}
-        <div className="absolute bottom-3 left-3 right-3 z-10 bg-white/95 dark:bg-zinc-900/95 backdrop-blur-xl border border-white/50 dark:border-zinc-800/50 rounded-2xl p-2 pl-4 flex flex-col sm:flex-row sm:items-center justify-between shadow-[0_8px_30px_rgb(0,0,0,0.12)] gap-2">
-          <div className="flex flex-col pr-2 overflow-hidden flex-1">
-            <span className="font-extrabold text-zinc-900 dark:text-zinc-100 text-sm sm:text-base truncate leading-tight mb-0.5">
-              {product.name}
-            </span>
-            <div className="flex items-center gap-2">
-                <span className="font-bold text-[#FF6611] dark:text-[#ff8033] text-xs">
+        <div className="absolute bottom-3 left-3 right-3 z-10 bg-white/95 dark:bg-zinc-900/95 backdrop-blur-xl border border-white/50 dark:border-zinc-800/50 rounded-[18px] p-2 flex flex-col shadow-[0_8px_30px_rgb(0,0,0,0.12)] gap-1">
+          <span className="font-bold text-zinc-900 dark:text-zinc-100 text-[13px] sm:text-sm truncate px-1.5 pt-0.5">
+            {product.name}
+          </span>
+          <div className="flex items-center justify-between px-1.5 pb-0.5">
+            <div className="flex items-center gap-1.5">
+                <span className="font-black text-[#ea580c] dark:text-[#ff8033] text-sm">
                   {formatPrice(product.offerPrice || product.price)}
                 </span>
                 {product.isOffer && product.offerPrice && (
-                    <span className="font-semibold text-zinc-400 dark:text-zinc-500 line-through text-[10px]">
+                    <span className="font-bold text-zinc-400 dark:text-zinc-500 line-through text-[10px]">
                       {formatPrice(product.price)}
                     </span>
                 )}
             </div>
-          </div>
 
-          <div className="flex items-center gap-1.5 shrink-0 self-end sm:self-auto">
-            <button 
-                className={cn(
-                  "w-8 h-8 sm:w-9 sm:h-9 rounded-full border bg-white dark:bg-zinc-900 flex items-center justify-center transition-all shadow-sm active:scale-95",
-                  isWishlisted 
-                    ? "text-red-500 border-red-500 bg-red-50 dark:bg-red-950/30" 
-                    : "border-zinc-100 dark:border-zinc-800 text-zinc-600 dark:text-zinc-400 hover:text-red-500 hover:border-red-100 dark:hover:border-red-900/50"
-                )}
-                onClick={toggleWishlist}
-            >
-                <Heart className={cn("w-4 h-4", isWishlisted && "fill-current")} />
-            </button>
-            <button 
-                className="w-8 h-8 sm:w-9 sm:h-9 rounded-full border border-zinc-100 dark:border-zinc-800 bg-zinc-900 dark:bg-white flex items-center justify-center hover:bg-zinc-800 dark:hover:bg-zinc-100 transition-colors shadow-sm active:scale-95 text-white dark:text-zinc-900"
-                onClick={addToCart}
-            >
-                <ShoppingCart className="w-4 h-4" />
-            </button>
+            <div className="flex items-center gap-1.5 shrink-0">
+              <button 
+                  className={cn(
+                    "w-7 h-7 rounded-full border bg-white dark:bg-zinc-900 flex items-center justify-center transition-all shadow-sm active:scale-95",
+                    isWishlisted 
+                      ? "text-red-500 border-red-500 bg-red-50 dark:bg-red-950/30" 
+                      : "border-zinc-100 dark:border-zinc-800 text-zinc-600 dark:text-zinc-400 hover:text-red-500 hover:border-red-100 dark:hover:border-red-900/50"
+                  )}
+                  onClick={toggleWishlist}
+              >
+                  <Heart className={cn("w-3.5 h-3.5", isWishlisted && "fill-current")} />
+              </button>
+              <button 
+                  className="w-7 h-7 rounded-full border border-zinc-100 dark:border-zinc-800 bg-zinc-900 dark:bg-white flex items-center justify-center hover:bg-zinc-800 dark:hover:bg-zinc-100 transition-colors shadow-sm active:scale-95 text-white dark:text-zinc-900"
+                  onClick={addToCart}
+              >
+                  <ShoppingCart className="w-3.5 h-3.5" />
+              </button>
+            </div>
           </div>
         </div>
       </div>

@@ -62,11 +62,11 @@ const DesktopLayout: React.FC<{ children: React.ReactNode }> = ({ children }) =>
   const showNav = ['/', '/profile', '/search', '/notifications', '/orders', '/wishlist'].includes(location.pathname);
 
   return (
-    <div className="min-h-screen bg-zinc-50 dark:bg-zinc-800 flex flex-col">
+    <div className="min-h-screen bg-transparent flex flex-col">
       <Header />
       <div className="flex-1 flex w-full">
         {/* Main Content Area */}
-        <div className={`transition-all duration-300 flex-1 w-full max-w-full ${sidebarOpen ? 'md:pl-64' : ''} lg:max-w-[calc(100vw-80px)] xl:max-w-none bg-zinc-50 dark:bg-zinc-800 md:bg-zinc-50 dark:bg-zinc-800/50`}>
+        <div className={`transition-all duration-300 flex-1 w-full max-w-full ${sidebarOpen ? 'md:pl-64' : ''} lg:max-w-[calc(100vw-80px)] xl:max-w-none bg-transparent`}>
           <div className="w-full max-w-[1920px] mx-auto pb-0">
             {children}
           </div>

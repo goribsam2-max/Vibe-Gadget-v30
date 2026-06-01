@@ -211,7 +211,7 @@ const Profile: React.FC<{ userData: UserProfile | null }> = ({
     localUserData?.role === "staff";
 
   return (
-    <div className="bg-[#F0F2F5] dark:bg-zinc-950 font-sans">
+    <div className="bg-[#F0F2F5] dark:bg-zinc-950 font-sans min-h-screen pb-[120px] md:pb-4">
       <div className="bg-[#0a2e15] dark:bg-[#071f0f] pt-12 pb-24 px-6 rounded-b-[40px] relative overflow-hidden">
           {/* Geometric shapes */}
           <div className="absolute top-10 left-4 w-16 h-16 bg-[#1cdb5e]/20 rounded-t-full rounded-br-full -rotate-45 pointer-events-none"></div>

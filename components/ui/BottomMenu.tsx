@@ -252,7 +252,7 @@ const BottomMenu = () => {
   return (
     <div
       ref={containerRef}
-      className={cn("fixed bottom-6 left-5 right-5 z-[100] flex items-end justify-between md:hidden gap-3 pointer-events-none")}
+      className={cn("fixed bottom-8 left-5 right-5 z-[100] flex items-end justify-between md:hidden gap-3 pointer-events-none mb-[calc(env(safe-area-inset-bottom)+8px)]")}
     >
       {/* Hidden for measurement */}
       <div

@@ -245,7 +245,8 @@ const Home: React.FC<{ userData?: any }> = ({ userData }) => {
   );
 
   return (
-    <div className="relative pt-2 px-5 md:px-12 bg-white dark:bg-[#121212] max-w-[1440px] mx-auto font-sans pb-4">
+    <div className="relative pt-4 px-5 md:px-12 bg-white dark:bg-[#121212] w-full min-h-screen font-sans pb-[120px] md:pb-4">
+      <div className="max-w-[1440px] mx-auto">
       <SEO
         title="Home"
         description="VibeGadget - Premium Tech Hub for Mobile, Accessories, and Gadgets in Bangladesh"
@@ -651,6 +652,7 @@ const Home: React.FC<{ userData?: any }> = ({ userData }) => {
       )}
 
       <CustomSectionEmbed location="home_bottom" />
+      </div>
     </div>
   );
 };

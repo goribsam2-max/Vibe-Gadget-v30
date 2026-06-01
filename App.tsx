@@ -467,7 +467,7 @@ const AppContent: React.FC = () => {
         savedAccounts={savedAccounts} 
         currentUid={auth.currentUser?.uid}
       />
-      <div className={`min-h-screen selection:bg-zinc-900 selection:text-white relative ${showNav ? 'pb-28 md:pb-0' : ''}`}>
+      <div className="min-h-screen selection:bg-zinc-900 selection:text-white relative">
         <Routes location={location} key={location.pathname}>
             <Route path="/" element={<PageWrapper><Home userData={userData} /></PageWrapper>} />
           <Route path="/onboarding" element={<PageWrapper><Onboarding onFinish={() => {}} /></PageWrapper>} />
